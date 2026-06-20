@@ -17,8 +17,10 @@ node_modules
 
 # Envs e logs
 .env
+*.env
 *.log
 
 # Docs
 docs/
+*.txt
 
