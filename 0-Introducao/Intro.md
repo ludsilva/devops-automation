@@ -114,6 +114,21 @@ watch --version
 Baixe em: [https://code.visualstudio.com/](https://code.visualstudio.com/)
 E instale as extensões: Docker, Terraform, YAML, GitHub Pull Requests
 
+### Extra: Leme CLI
+
+```bash
+pip install leme
+```
+
+Instale as extensões do VS Code: Leme CLI, Kubernetes, YAML, Docker, Terraform
+```bash
+# Setar o enviroment completo
+leme setup
+
+# Instalar tudo automaticamente
+leme setup --force
+```
+
 ---
 
 ## Checklist
