@@ -1,6 +1,9 @@
+.venv/
+
 # Envs e logs
 .env
 *.log
 
 # Docs
 docs/
+
