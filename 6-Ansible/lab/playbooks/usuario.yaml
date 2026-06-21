@@ -1,0 +1,41 @@
+---
+- name: Criar usuário e gerenciar permissões
+  hosts: targets
+  become: true
+
+  tasks:
+    - name: Criar usuário devops com senha e bash
+      user:
+        name: devops
+        password: "{{ 'Devops123!@#' | password_hash('sha512') }}"
+        shell: /bin/bash
+        groups: sudo,docker
+        append: yes
+        state: present
+
+    - name: Criar diretório de aplicação
+      file:
+        path: /opt/app
+        state: directory
+        owner: devops
+        group: devops
+        mode: '0755'
+
+    - name: Criar diretório de logs
+      file:
+        path: /opt/logs
+        state: directory
+        owner: devops
+        group: devops
+        mode: '0755'
+
+    - name: Criar arquivo de teste no diretório de app
+      copy:
+        content: "Aplicação iniciada em {{ ansible_date_time.date }} {{ ansible_date_time.time }}\n"
+        dest: /opt/app/status.txt
+        owner: devops
+        group: devops
+        mode: '0644'
+
+    - name: Criar arquivo de log simulado
+      shell: echo "log iniciado em $(date)" > /opt/logs/inicial.log

@@ -1,0 +1,63 @@
+---
+- name: Instalar Docker e rodar app java
+  hosts: targets
+  become: true
+
+  tasks:
+    - name: Atualizar pacotes
+      apt:
+        update_cache: yes
+
+    - name: Instalar dependências do Docker
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add chave GPG do Docker
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+    - name: Add repo do Docker
+      shell: add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+    - name: Atualizar pacotes novamente
+      apt:
+        update_cache: yes
+
+    - name: Instalar Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Habilitar e iniciar o Docker
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Instalar pip para Python 3
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Instalar SDK do Docker para Python
+      pip:
+        name: docker
+
+    - name: Adicionar usuário ao grupo docker
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Rodar o container 
+      docker_container:
+        name: java_api
+        image: iesodias/java-api:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "8081:8081"
