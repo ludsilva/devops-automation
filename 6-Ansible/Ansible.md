@@ -6,7 +6,7 @@ Consolidar todos os labs de Ansible em uma estrutura única dentro do diretório
 
 ---
 
-### Estrutura de Diretório Sugerida:
+### Estrutura de Diretório sugerida:
 
 ```bash
 ~/ansible-lab/
@@ -517,4 +517,4 @@ az group delete --name ansible-lab-rg --yes --no-wait
 
 * As VMs `ansible-controller` e `ansible-target` são removidas
 * IPs públicos, discos, NICs, NSGs e VNet também são apagados
-* Nenhum recurso do lab permanece no Azure
+* Nenhum recurso do lab permanece no Azure.
