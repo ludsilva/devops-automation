@@ -416,7 +416,25 @@ done
 
 ---
 
-### 6. Validar as instâncias - retorna o Public IP
+### 6. Validar as instâncias
+
+```bash
+aws ec2 describe-instances \
+  --filters "Name=tag:Name,Values=vm01,vm02,vm03" \
+  --query "Reservations[].Instances[].PublicIpAddress" --output text
+```
+
+---
+
+### 5. Executar o script
+
+```bash
+./criar-vms.sh
+```
+
+---
+
+### 6. Validar as instâncias
 
 ```bash
 aws ec2 describe-instances \
