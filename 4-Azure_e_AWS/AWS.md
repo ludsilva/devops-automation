@@ -426,24 +426,6 @@ aws ec2 describe-instances \
 
 ---
 
-### 5. Executar o script
-
-```bash
-./criar-vms.sh
-```
-
----
-
-### 6. Validar as instâncias
-
-```bash
-aws ec2 describe-instances \
-  --filters "Name=tag:Name,Values=vm01,vm02,vm03" \
-  --query "Reservations[].Instances[].PublicIpAddress" --output text
-```
-
----
-
 ## Lab 12 – Script para Destruir VMs e Recursos na AWS via CLI
 
 ### 1. Objetivo
