@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: java-app-scaler
+spec:
+  scaleTargetRef:
+    name: java-app-deployment
+  minReplicaCount: 0
+  maxReplicaCount: 5
+  cooldownPeriod: 30
+  triggers:
+    - type: cron
+      metadata:
+        timezone: UTC
+        start: "45 18 * * *"
+        end: "50 18 * * *"
+        desiredReplicas: "4"
