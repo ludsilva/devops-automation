@@ -1,6 +1,4 @@
-## Curso DevOps: Automação sem Enrolação
-
-# DevOps Automation - Sem Enrolação
+# Curso DevOps: Automação sem Enrolação
 
 ## Sobre o Curso
 
